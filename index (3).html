@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pierre Cardin — Костюм-шым сатуу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & TOKENS ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000;
+  --ink:#0a0a0a;
+  --white:#fff;
+  --paper:#f6f5f2;
+  --navy:#0d1b36;
+  --navy-2:#16294d;
+  --gold:#b8975a;
+  --gold-2:#d4b67a;
+  --grey:#6d6d72;
+  --line:#e4e2dc;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --shadow-lg:0 22px 50px rgba(0,0,0,.16);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:400;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+section{padding:110px 0}
+.container{width:min(1200px,92%);margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1}
+.section-head{text-align:center;margin-bottom:60px}
+.section-head h2{font-size:clamp(2rem,4vw,3.2rem)}
+.section-head p{color:var(--grey);margin-top:12px;max-width:520px;margin-inline:auto}
+.section-head .rule{display:block;width:56px;height:2px;background:var(--gold);margin:22px auto 0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:16px 34px;border:1px solid var(--ink);background:var(--ink);color:var(--white);
+  font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:color .35s ease,border-color .35s ease,transform .35s ease,box-shadow .35s ease;
+  z-index:1;min-height:48px;
+}
+.btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .4s ease;z-index:-1}
+.btn:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 10px 24px rgba(184,151,90,.35)}
+.btn:hover::before{transform:translateX(0)}
+.btn.light{background:transparent;color:var(--white);border-color:rgba(255,255,255,.7)}
+.btn.light:hover{color:var(--ink);border-color:var(--gold)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn.gold::before{background:var(--white)}
+.btn.gold:hover{border-color:var(--white)}
+.btn.outline{background:transparent;color:var(--ink)}
+.btn.outline:hover{color:var(--ink)}
+.btn.small{padding:12px 20px;font-size:.7rem;min-height:42px}
+.btn.block{width:100%}
+
+/* ===== 1. HEADER ===== */
+.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:24px}
+.logo{font-family:var(--serif);font-size:1.7rem;font-weight:600;letter-spacing:.22em;white-space:nowrap}
+.logo span{color:var(--gold)}
+.menu{display:flex;gap:34px}
+.menu a{font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;position:relative;padding:6px 0;transition:color .3s}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
+.menu a:hover{color:var(--gold)}
+.menu a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:6px}
+.icon-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 12px;font-size:.78rem;font-weight:500;border-radius:40px;transition:background .3s,color .3s,transform .3s}
+.icon-btn:hover{background:var(--navy);color:var(--white);transform:translateY(-1px)}
+.icon-btn .ico{font-size:1.1rem;line-height:1}
+.badge{background:var(--gold);color:var(--ink);font-size:.65rem;font-weight:600;min-width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+#nav-toggle{position:absolute;opacity:0;pointer-events:none}
+.burger{display:none;width:44px;height:44px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:6px}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .3s,opacity .3s}
+
+/* ===== 2. HERO ===== */
+.hero{
+  min-height:calc(100vh - 78px);padding:0;display:flex;align-items:center;position:relative;color:var(--white);
+  background:#0d1b36 url("https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1900&q=80") center/cover no-repeat;
+}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(95deg,rgba(0,0,0,.88) 0%,rgba(13,27,54,.7) 48%,rgba(0,0,0,.15) 100%)}
+.hero-inner{position:relative;padding:100px 0}
+.hero-tag{display:inline-block;font-size:.78rem;letter-spacing:.3em;color:var(--gold-2);border-top:1px solid var(--gold);padding-top:14px;margin-bottom:26px}
+.hero h1{font-size:clamp(3.2rem,9vw,7.5rem);font-weight:600;letter-spacing:.06em;margin-bottom:20px}
+.hero .slogan{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--gold-2);margin-bottom:18px}
+.hero .lead{max-width:520px;color:rgba(255,255,255,.82);font-weight:300;font-size:1.05rem;margin-bottom:42px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+
+/* ===== 3. CATEGORIES ===== */
+.categories{background:var(--paper)}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.cat-card{position:relative;background:var(--white);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .45s ease,box-shadow .45s ease}
+.cat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.cat-img{height:440px;overflow:hidden;background:var(--navy-2)}
+.cat-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.cat-card:hover .cat-img img{transform:scale(1.07)}
+.cat-body{padding:32px 30px 36px;text-align:center;border-top:3px solid var(--gold)}
+.cat-body h3{font-size:2rem;letter-spacing:.14em;margin-bottom:10px}
+.cat-body p{color:var(--grey);margin-bottom:24px;min-height:50px}
+
+/* ===== 4. PRODUCTS ===== */
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.product{background:var(--white);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .4s ease,box-shadow .4s ease}
+.product:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.p-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#e9e7e1}
+.p-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.product:hover .p-img img{transform:scale(1.08)}
+.sale-tag{position:absolute;top:14px;left:14px;background:var(--navy);color:var(--white);font-size:.68rem;letter-spacing:.14em;padding:5px 12px;border-radius:30px;z-index:2}
+.fav{position:absolute;top:12px;right:12px;z-index:3}
+.fav input{position:absolute;opacity:0;pointer-events:none}
+.fav label{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--white);box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:1.25rem;color:var(--ink);cursor:pointer;transition:transform .3s,background .3s,color .3s}
+.fav label:hover{transform:scale(1.12)}
+.fav input:checked + label{background:var(--gold);color:var(--white)}
+.fav input:checked + label::before{content:"♥"}
+.fav input:checked + label span{display:none}
+.fav input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+.p-body{padding:22px 20px 24px;display:flex;flex-direction:column;flex:1}
+.p-body h3{font-size:1.45rem;margin-bottom:6px}
+.p-desc{color:var(--grey);font-size:.88rem;margin-bottom:12px;flex:1}
+.stars{color:var(--gold);letter-spacing:3px;font-size:.95rem;margin-bottom:12px}
+.stars small{color:var(--grey);letter-spacing:0;margin-left:6px;font-size:.78rem}
+.price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+.price{font-family:var(--serif);font-size:1.6rem;font-weight:600}
+.old-price{color:#9a9aa0;text-decoration:line-through;font-size:.95rem}
+
+/* ===== 5. STYLE FINDER ===== */
+.finder{background:var(--navy);color:var(--white);position:relative}
+.finder .section-head p{color:rgba(255,255,255,.7)}
+.filter-panel{background:rgba(255,255,255,.05);border:1px solid rgba(184,151,90,.45);border-radius:10px;padding:46px;box-shadow:0 30px 60px rgba(0,0,0,.35);backdrop-filter:blur(6px)}
+.filter-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:38px 50px}
+.filter-group h4{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--gold-2);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.14)}
+.options{display:flex;flex-wrap:wrap;gap:12px}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt label{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border:1px solid rgba(255,255,255,.3);border-radius:40px;font-size:.88rem;cursor:pointer;transition:background .3s,color .3s,border-color .3s,transform .3s;min-height:44px}
+.opt label:hover{border-color:var(--gold);transform:translateY(-2px)}
+.opt input:checked + label{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:500}
+.opt input:focus-visible + label{outline:2px solid var(--white);outline-offset:2px}
+.swatch{width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,.5);display:inline-block}
+.opt.size label{width:58px;padding:11px 0;justify-content:center;border-radius:6px}
+.finder-cta{text-align:center;margin-top:50px}
+.finder-cta .btn{padding:20px 64px;font-size:.9rem}
+
+/* ===== 6. WHY ===== */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.why-card{text-align:center;padding:42px 26px;border:1px solid var(--line);border-radius:6px;transition:transform .4s,box-shadow .4s,border-color .4s}
+.why-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold)}
+.why-icon{width:78px;height:78px;margin:0 auto 24px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--paper),0 0 0 7px var(--gold)}
+.why-icon svg{width:34px;height:34px;stroke:var(--gold-2);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.why-card h3{font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.16em;margin-bottom:10px}
+.why-card h3::before{content:"✓ ";color:var(--gold)}
+.why-card p{color:var(--grey);font-size:.93rem}
+
+/* ===== 7. PROMO ===== */
+.promo{padding:0}
+.promo-banner{
+  position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--white);
+  background:#000 url("https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1900&q=80") center/cover fixed no-repeat;
+}
+.promo-banner::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.78),rgba(13,27,54,.82))}
+.promo-frame{position:relative;border:1px solid var(--gold);padding:64px 56px;margin:60px 20px;max-width:760px}
+.promo-frame::before{content:"";position:absolute;inset:8px;border:1px solid rgba(184,151,90,.35);pointer-events:none}
+.promo-frame h2{font-size:clamp(2.2rem,6vw,4.4rem);font-weight:600;letter-spacing:.05em;margin-bottom:16px}
+.promo-frame h2 em{font-style:normal;color:var(--gold-2)}
+.promo-frame p{font-weight:300;font-size:1.1rem;margin-bottom:34px;color:rgba(255,255,255,.85)}
+
+/* ===== 8. REVIEWS ===== */
+.reviews{background:var(--paper)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.review{background:var(--white);padding:44px 34px 36px;border-radius:6px;box-shadow:var(--shadow);position:relative;transition:transform .4s,box-shadow .4s}
+.review:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.review::before{content:"“";position:absolute;top:6px;right:26px;font-family:var(--serif);font-size:6rem;line-height:1;color:var(--gold);opacity:.35}
+.review .stars{font-size:1.1rem;margin-bottom:16px}
+.review blockquote{font-family:var(--serif);font-size:1.35rem;line-height:1.45;margin-bottom:22px}
+.review cite{font-style:normal;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);display:flex;align-items:center;gap:12px}
+.review cite::before{content:"";width:28px;height:1px;background:var(--gold)}
+
+/* ===== 9. SIZE ===== */
+.size-section{background:var(--white)}
+.size-box{max-width:860px;margin:0 auto;text-align:center;border:1px solid var(--line);border-radius:10px;padding:70px 40px;box-shadow:var(--shadow);background:linear-gradient(180deg,#fff,var(--paper))}
+.size-box h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:12px}
+.size-box>p{color:var(--grey);margin-bottom:38px}
+.size-row{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:42px}
+.size-pill{width:72px;height:72px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.6rem;font-weight:600;border:1px solid var(--ink);border-radius:50%;transition:background .3s,color .3s,transform .3s,border-color .3s}
+.size-pill:hover{background:var(--navy);color:var(--gold-2);border-color:var(--navy);transform:translateY(-5px)}
+
+/* ===== 10. CONTACT ===== */
+.contact{background:var(--ink);color:var(--white)}
+.contact .section-head p{color:rgba(255,255,255,.65)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+.info-list{display:grid;gap:20px}
+.info-item{display:flex;gap:20px;align-items:center;padding:24px 26px;border:1px solid rgba(255,255,255,.12);border-radius:8px;transition:border-color .3s,transform .3s,background .3s}
+.info-item:hover{border-color:var(--gold);transform:translateX(6px);background:rgba(255,255,255,.04)}
+.info-ico{flex:none;width:54px;height:54px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 0 0 1px var(--gold)}
+.info-item h4{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--gold-2)}
+.info-item p{color:rgba(255,255,255,.8);font-size:.95rem}
+.form{background:var(--white);color:var(--ink);padding:46px;border-radius:8px;box-shadow:0 30px 60px rgba(0,0,0,.5);display:grid;gap:20px}
+.form h3{font-size:2rem;margin-bottom:4px}
+.field label{display:block;font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;color:var(--grey)}
+.field input,.field textarea,.field select{width:100%;padding:15px 16px;font-family:var(--sans);font-size:1rem;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink);transition:border-color .3s,box-shadow .3s,background .3s}
+.field textarea{resize:vertical;min-height:120px}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(184,151,90,.2)}
+
+/* ===== 11. FOOTER ===== */
+.footer{background:var(--black);color:rgba(255,255,255,.75);padding:80px 0 30px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:50px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer .logo{color:var(--white);display:inline-block;margin-bottom:18px}
+.footer p{max-width:340px}
+.footer h4{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--gold-2);margin-bottom:18px}
+.footer-links{display:grid;gap:10px}
+.footer-links a{transition:color .3s,padding-left .3s}
+.footer-links a:hover{color:var(--gold-2);padding-left:6px}
+.socials{display:flex;gap:12px;flex-wrap:wrap}
+.socials a{padding:11px 20px;border:1px solid rgba(255,255,255,.3);border-radius:40px;font-size:.85rem;transition:background .3s,color .3s,border-color .3s,transform .3s}
+.socials a:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);transform:translateY(-3px)}
+.copyright{text-align:center;padding-top:28px;font-size:.85rem;color:rgba(255,255,255,.5)}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1100px){
+  .product-grid{grid-template-columns:repeat(3,1fr)}
+  .menu{gap:22px}
+  .icon-btn .txt{display:none}
+}
+@media (max-width:900px){
+  section{padding:80px 0}
+  .burger{display:flex;order:3}
+  .nav-actions{margin-left:auto}
+  .menu{
+    position:absolute;top:78px;left:0;right:0;flex-direction:column;gap:0;background:var(--white);
+    border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+    max-height:0;overflow:hidden;transition:max-height .45s ease;
+  }
+  .menu a{padding:18px 6%;border-top:1px solid var(--line)}
+  .menu a::after{display:none}
+  #nav-toggle:checked ~ .menu{max-height:480px}
+  #nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  #nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+  #nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .cat-grid,.review-grid{grid-template-columns:1fr}
+  .cat-img{height:360px}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-wrap{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-top>div:first-child{grid-column:1/-1}
+  .promo-banner{background-attachment:scroll}
+  .filter-panel{padding:34px 26px}
+  .filter-grid{grid-template-columns:1fr;gap:30px}
+}
+@media (max-width:560px){
+  section{padding:64px 0}
+  .logo{font-size:1.25rem;letter-spacing:.14em}
+  .nav{height:68px}
+  .menu{top:68px}
+  .hero{min-height:88vh}
+  .hero::before{background:linear-gradient(180deg,rgba(0,0,0,.72),rgba(13,27,54,.88))}
+  .hero-inner{padding:70px 0}
+  .hero-btns .btn{width:100%}
+  .product-grid{gap:12px}
+  .p-body{padding:14px 12px 16px}
+  .p-body h3{font-size:1.1rem}
+  .p-desc{display:none}
+  .price{font-size:1.2rem}
+  .old-price{font-size:.8rem}
+  .price-row{flex-wrap:wrap;gap:4px 8px}
+  .btn.small{padding:12px 8px;font-size:.62rem;letter-spacing:.1em}
+  .why-grid{grid-template-columns:1fr}
+  .promo-frame{padding:44px 24px;margin:40px 16px}
+  .size-box{padding:44px 20px}
+  .size-pill{width:60px;height:60px;font-size:1.3rem}
+  .form{padding:30px 22px}
+  .finder-cta .btn{width:100%;padding:18px}
+  .footer-top{grid-template-columns:1fr}
+  .info-item{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 1. HEADER ===== -->
+<header class="header" id="home">
+  <div class="container nav">
+    <a href="#home" class="logo">PIERRE <span>CARDIN</span></a>
+
+    <input type="checkbox" id="nav-toggle" aria-label="Менюну ачуу">
+    <nav class="menu" aria-label="Башкы меню">
+      <a href="#home">Башкы бет</a>
+      <a href="#collection">Коллекция</a>
+      <a href="#comfort">Комфорт</a>
+      <a href="#luxury">Люкс</a>
+      <a href="#economy">Арзан</a>
+      <a href="#about">Биз жөнүндө</a>
+      <a href="#contact">Байланыш</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="#collection" class="icon-btn" aria-label="Издөө"><span class="ico">🔍</span><span class="txt">Издөө</span></a>
+      <a href="#collection" class="icon-btn" aria-label="Избранное"><span class="ico">♡</span><span class="txt">Избранное</span></a>
+      <a href="#contact" class="icon-btn" aria-label="Себет"><span class="ico">🛒</span><span class="txt">Себет</span><span class="badge">0</span></a>
+    </div>
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+  </div>
+</header>
+
+<main>
+<!-- ===== 2. HERO ===== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="hero-tag">ЭРКЕКТЕРДИН КОСТЮМ-ШЫМДАРЫ</span>
+    <h1>PIERRE CARDIN</h1>
+    <p class="slogan">“Стиль. Сапат. Өзүңүзгө ылайыктуу костюм.”</p>
+    <p class="lead">“Күнүмдүк жашоого, бизнеске жана өзгөчө учурларга ылайыктуу заманбап костюм-шымдар.”</p>
+    <div class="hero-btns">
+      <a href="#collection" class="btn light">Коллекцияны көрүү</a>
+      <a href="#contact" class="btn gold">Азыр сатып алуу</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. CATEGORIES ===== -->
+<section class="categories" id="about">
+  <div class="container">
+    <div class="section-head">
+      <h2>Категориялар</h2>
+      <span class="rule"></span>
+      <p>Өзүңүзгө ылайыктуу вариантты оңой тандаңыз.</p>
+    </div>
+    <div class="cat-grid">
+      <article class="cat-card" id="comfort">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=900&q=80" alt="Comfort — күнүмдүк кийүүгө ыңгайлуу костюм" loading="lazy"></div>
+        <div class="cat-body">
+          <h3>COMFORT</h3>
+          <p>“Күнүмдүк кийүүгө ыңгайлуу жана жеңил костюмдар.”</p>
+          <a href="#collection" class="btn outline">Көрүү</a>
+        </div>
+      </article>
+      <article class="cat-card" id="luxury">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=900&q=80" alt="Luxury — премиум материалдан жасалган костюм" loading="lazy"></div>
+        <div class="cat-body">
+          <h3>LUXURY</h3>
+          <p>“Премиум материалдан жасалган, өзгөчө учурларга арналган костюмдар.”</p>
+          <a href="#collection" class="btn outline">Көрүү</a>
+        </div>
+      </article>
+      <article class="cat-card" id="economy">
+        <div class="cat-img"><img src="https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?auto=format&fit=crop&w=900&q=80" alt="Эконом — жеткиликтүү баадагы костюм-шым" loading="lazy"></div>
+        <div class="cat-body">
+          <h3>ЭКОНОМ</h3>
+          <p>“Сапаттуу жана жеткиликтүү баадагы костюм-шымдар.”</p>
+          <a href="#collection" class="btn outline">Көрүү</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. NEW COLLECTION ===== -->
+<section id="collection">
+  <div class="container">
+    <div class="section-head">
+      <h2>Жаңы коллекция</h2>
+      <span class="rule"></span>
+      <p>Сезонго ылайыктуу эң сонун костюмдар.</p>
+    </div>
+    <div class="product-grid">
+
+      <article class="product">
+        <div class="p-img">
+          <span class="sale-tag">-15%</span>
+          <div class="fav"><input type="checkbox" id="f1"><label for="f1" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Classic Black костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Classic Black</h3>
+          <p class="p-desc">Классикалык кара костюм, ар кандай учурга.</p>
+          <div class="stars">★★★★★<small>(48)</small></div>
+          <div class="price-row"><span class="price">5 900 сом</span><span class="old-price">6 900 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="p-img">
+          <div class="fav"><input type="checkbox" id="f2"><label for="f2" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Business Navy костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Business Navy</h3>
+          <p class="p-desc">Бизнес жолугушуулар үчүн кочкул көк костюм.</p>
+          <div class="stars">★★★★★<small>(36)</small></div>
+          <div class="price-row"><span class="price">7 500 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="p-img">
+          <span class="sale-tag">-10%</span>
+          <div class="fav"><input type="checkbox" id="f3"><label for="f3" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Comfort Gray костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Comfort Gray</h3>
+          <p class="p-desc">Жеңил боз костюм, күн сайын кийүүгө ыңгайлуу.</p>
+          <div class="stars">★★★★☆<small>(29)</small></div>
+          <div class="price-row"><span class="price">4 500 сом</span><span class="old-price">5 000 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="p-img">
+          <div class="fav"><input type="checkbox" id="f4"><label for="f4" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Premium Black костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Premium Black</h3>
+          <p class="p-desc">Премиум материал, өзгөчө кечелерге.</p>
+          <div class="stars">★★★★★<small>(52)</small></div>
+          <div class="price-row"><span class="price">9 500 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="p-img">
+          <span class="sale-tag">-12%</span>
+          <div class="fav"><input type="checkbox" id="f5"><label for="f5" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Slim Fit Blue костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Slim Fit Blue</h3>
+          <p class="p-desc">Денеге тыкан отурган заманбап көк костюм.</p>
+          <div class="stars">★★★★☆<small>(31)</small></div>
+          <div class="price-row"><span class="price">6 800 сом</span><span class="old-price">7 700 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="p-img">
+          <div class="fav"><input type="checkbox" id="f6"><label for="f6" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Luxury Brown костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Luxury Brown</h3>
+          <p class="p-desc">Люкс күрөң костюм, бай текстура жана так тигүү.</p>
+          <div class="stars">★★★★★<small>(24)</small></div>
+          <div class="price-row"><span class="price">10 500 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="p-img">
+          <span class="sale-tag">-8%</span>
+          <div class="fav"><input type="checkbox" id="f7"><label for="f7" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Modern Gray костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Modern Gray</h3>
+          <p class="p-desc">Заманбап кесим, тынч боз түс.</p>
+          <div class="stars">★★★★☆<small>(19)</small></div>
+          <div class="price-row"><span class="price">5 500 сом</span><span class="old-price">6 000 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="p-img">
+          <div class="fav"><input type="checkbox" id="f8"><label for="f8" aria-label="Избранноеге кошуу"><span>♡</span></label></div>
+          <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?auto=format&fit=crop&w=700&q=80" alt="Pierre Cardin Elegant Navy костюму" loading="lazy">
+        </div>
+        <div class="p-body">
+          <h3>Pierre Cardin Elegant Navy</h3>
+          <p class="p-desc">Көркөм кочкул көк костюм, салтанаттуу учурларга.</p>
+          <div class="stars">★★★★★<small>(41)</small></div>
+          <div class="price-row"><span class="price">8 900 сом</span></div>
+          <a href="#contact" class="btn small block">Сатып алуу</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. STYLE FINDER ===== -->
+<section class="finder" id="finder">
+  <div class="container">
+    <div class="section-head">
+      <h2>Өзүңүзгө ылайыктуу стилди тандаңыз</h2>
+      <span class="rule"></span>
+      <p>Стилди, бааны, түстү жана өлчөмдү белгилеңиз.</p>
+    </div>
+    <div class="filter-panel">
+      <div class="filter-grid">
+
+        <div class="filter-group">
+          <h4>Стиль</h4>
+          <div class="options">
+            <div class="opt"><input type="radio" name="style" id="s1" checked><label for="s1">Classic</label></div>
+            <div class="opt"><input type="radio" name="style" id="s2"><label for="s2">Slim Fit</label></div>
+            <div class="opt"><input type="radio" name="style" id="s3"><label for="s3">Modern</label></div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Баа</h4>
+          <div class="options">
+            <div class="opt"><input type="radio" name="price" id="p1"><label for="p1">Арзан</label></div>
+            <div class="opt"><input type="radio" name="price" id="p2" checked><label for="p2">Орточо</label></div>
+            <div class="opt"><input type="radio" name="price" id="p3"><label for="p3">Premium</label></div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Түс</h4>
+          <div class="options">
+            <div class="opt"><input type="radio" name="color" id="c1" checked><label for="c1"><span class="swatch" style="background:#000"></span>Кара</label></div>
+            <div class="opt"><input type="radio" name="color" id="c2"><label for="c2"><span class="swatch" style="background:#1f4e9c"></span>Көк</label></div>
+            <div class="opt"><input type="radio" name="color" id="c3"><label for="c3"><span class="swatch" style="background:#8a8d93"></span>Боз</label></div>
+            <div class="opt"><input type="radio" name="color" id="c4"><label for="c4"><span class="swatch" style="background:#5b3a29"></span>Күрөң</label></div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Өлчөм</h4>
+          <div class="options">
+            <div class="opt size"><input type="radio" name="size" id="z1"><label for="z1">46</label></div>
+            <div class="opt size"><input type="radio" name="size" id="z2" checked><label for="z2">48</label></div>
+            <div class="opt size"><input type="radio" name="size" id="z3"><label for="z3">50</label></div>
+            <div class="opt size"><input type="radio" name="size" id="z4"><label for="z4">52</label></div>
+            <div class="opt size"><input type="radio" name="size" id="z5"><label for="z5">54</label></div>
+            <div class="opt size"><input type="radio" name="size" id="z6"><label for="z6">56</label></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="finder-cta">
+        <a href="#collection" class="btn gold">Костюмду тандоо</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. WHY PIERRE CARDIN ===== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Эмне үчүн Pierre Cardin?</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></div>
+        <h3>САПАТ</h3>
+        <p>Жогорку сапаттагы материалдар.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l-5 3 2 4 3-1v12h8V9l3 1 2-4-5-3c-.6 1.3-2 2-4 2s-3.4-.7-4-2z"/></svg></div>
+        <h3>ЗАМАНБАП ДИЗАЙН</h3>
+        <p>Учурдагы модага ылайык дизайн.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 6a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
+        <h3>ЫҢГАЙЛУУЛУК</h3>
+        <p>Күнүмдүк кийүүгө ыңгайлуу.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+        <h3>ТЕЗ ЖЕТКИРҮҮ</h3>
+        <p>Заказды тез жана ишенимдүү жеткирүү.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. PROMOTION ===== -->
+<section class="promo">
+  <div class="promo-banner">
+    <div class="promo-frame">
+      <h2>ЖАҢЫ КОЛЛЕКЦИЯГА <em>-20%</em></h2>
+      <p>“Өзүңүзгө ылайыктуу костюмду азыр тандаңыз.”</p>
+      <a href="#collection" class="btn gold">Акцияны көрүү</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. REVIEWS ===== -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-head">
+      <h2>Кардарлардын пикирлери</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="review-grid">
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <blockquote>“Костюмдун сапаты абдан жакшы. Өлчөмү да туура келди.”</blockquote>
+        <cite>Бакыт</cite>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <blockquote>“Дизайны абдан заманбап экен. Баасына да татыктуу.”</blockquote>
+        <cite>Азамат</cite>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <blockquote>“Тез жеткиришти, костюм мага жакты.”</blockquote>
+        <cite>Нурбек</cite>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9. SIZE HELP ===== -->
+<section class="size-section">
+  <div class="container">
+    <div class="size-box">
+      <h2>Өлчөмүңүздү билбейсизби?</h2>
+      <p>“Биз сизге туура өлчөмдү тандоого жардам беребиз.”</p>
+      <div class="size-row">
+        <a href="#contact" class="size-pill">46</a>
+        <a href="#contact" class="size-pill">48</a>
+        <a href="#contact" class="size-pill">50</a>
+        <a href="#contact" class="size-pill">52</a>
+        <a href="#contact" class="size-pill">54</a>
+        <a href="#contact" class="size-pill">56</a>
+      </div>
+      <a href="#contact" class="btn">Өлчөм тандоого жардам</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2>Байланыш</h2>
+      <span class="rule"></span>
+      <p>Бизге жазыңыз, костюм тандоого жардам беребиз.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="info-list">
+        <div class="info-item"><div class="info-ico">📞</div><div><h4>Телефон</h4><p>+996 700 000 000</p></div></div>
+        <div class="info-item"><div class="info-ico">💬</div><div><h4>WhatsApp</h4><p>+996 700 000 000</p></div></div>
+        <div class="info-item"><div class="info-ico">📍</div><div><h4>Дарек</h4><p>Кыргызстан, Бишкек ш., Чүй проспектиси 100</p></div></div>
+        <div class="info-item"><div class="info-ico">🕐</div><div><h4>Иштөө убактысы</h4><p>Дүйшөмбү – Жекшемби: 09:00 – 20:00</p></div></div>
+      </div>
+
+      <form class="form" action="#" method="post">
+        <h3>Заказ берүү</h3>
+        <div class="field"><label for="name">Атыңыз</label><input type="text" id="name" name="name" placeholder="Атыңызды жазыңыз" required></div>
+        <div class="field"><label for="phone">Телефон номери</label><input type="tel" id="phone" name="phone" placeholder="+996 ___ ___ ___" required></div>
+        <div class="field">
+          <label for="suit">Кандай костюм издеп жатасыз?</label>
+          <select id="suit" name="suit">
+            <option>Classic Black</option>
+            <option>Business Navy</option>
+            <option>Comfort Gray</option>
+            <option>Premium Black</option>
+            <option>Slim Fit Blue</option>
+            <option>Luxury Brown</option>
+            <option>Modern Gray</option>
+            <option>Elegant Navy</option>
+          </select>
+        </div>
+        <div class="field"><label for="msg">Кабар</label><textarea id="msg" name="message" placeholder="Өлчөм, түс же башка каалоолоруңуз"></textarea></div>
+        <button type="submit" class="btn block">Заказ берүү</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== 11. FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#home" class="logo">PIERRE <span>CARDIN</span></a>
+        <p>“Сапаттуу костюм-шымдар менен сиздин стилиңизди толуктаңыз.”</p>
+      </div>
+      <div>
+        <h4>Меню</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Башкы бет</a></li>
+          <li><a href="#collection">Коллекция</a></li>
+          <li><a href="#comfort">Комфорт</a></li>
+          <li><a href="#luxury">Люкс</a></li>
+          <li><a href="#economy">Арзан</a></li>
+          <li><a href="#contact">Байланыш</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Социалдык тармактар</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">Telegram</a>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Pierre Cardin. Бардык укуктар корголгон.</p>
+  </div>
+</footer>
+
+</body>
+</html>
